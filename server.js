@@ -39,4 +39,7 @@ app.post('/addData', (req, res) => {
   projectData.weather = req.body.weather;
   projectData.temperature = req.body.temperature;
   projectData.response = req.body.response;
+  projectData.time = req.body.time;
+  projectData.sunrise = req.body.sunrise;
+  projectData.sunset = req.body.sunset;
 })
