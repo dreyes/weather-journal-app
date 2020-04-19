@@ -8,6 +8,7 @@ const unitType = '&units=metric';
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
+// Global Variables
 const generateBtn = document.getElementById('generate');
 const dateDiv = document.getElementById('date');
 const tempDiv = document.getElementById('temp');
@@ -19,7 +20,6 @@ const contentDiv = document.getElementById('content');
 generateBtn.addEventListener('click', () => {
   requestWeather(baseURL, appKey, unitType)
     .then(function(weatherData){
-      console.log(weatherData);
       const weather = weatherData.weather[0].id;
       const temp = weatherData.main.temp;
       const city = weatherData.name;
@@ -58,7 +58,6 @@ const postData = async (url = '', data = {}) => {
   })
   try {
     const newData = await response.json();
-    console.log(newData);
     return newData;
   }catch(error) {
     console.log("error", error);
@@ -70,11 +69,9 @@ const updateUI = async (url = '') => {
   const request = await fetch('/allData')
   try{
     const allData = await request.json();
-    console.log(allData);
     dateDiv.innerHTML = `${allData.city}, ${allData.date}`;
     tempDiv.innerHTML = allData.temperature + " °C";
     const x = allData.weather;
-    console.log(x);
     switch (true){
       case (x < 300):
         // Thunderstorm
