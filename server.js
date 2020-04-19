@@ -22,18 +22,21 @@ app.use(express.static('website'));
 
 
 // Setup Server
-const port = 8080;
+const port = 8000;
 const server = app.listen(port, () => {
   console.log(`running on localhost port: ${port}`);
 })
 
-
-app.get('/weatherData', (req, res) => {
-  return projectData;
+// get projectData
+app.get('/allData', (req, res) => {
+  res.send(projectData);
 })
 
-app.post('/weatherData', (req, res) => {
-  projectData.temperature = req.temperature;
-  projectData.date = req.date;
-  project.userResponse = req.userResponse;
+// Adding data to the projectData object
+app.post('/addData', (req, res) => {
+  projectData.date = req.body.date;
+  projectData.city = req.body.city;
+  projectData.weather = req.body.weather;
+  projectData.temperature = req.body.temperature;
+  projectData.response = req.body.response;
 })
